@@ -6,28 +6,23 @@ import Link from "next/link";
 import React, { useContext, useState } from "react";
 
 const MyPlanPage = () => {
-  const {
-    todayPlans = [],
-    setTodayPlans,
-    savedPlans = [],
-    setSavedPlans,
-  } = useContext(PlanContext);
+  const { todayPlans, setTodayPlans, savedPlans, setSavedPlans } =
+    useContext(PlanContext);
   const [activeTab, setActiveTab] = useState("today");
   const [sortBy, setSortBy] = useState("duration");
 
-  // Current selected tab check
   let currentList = activeTab === "today" ? todayPlans : savedPlans;
 
-  // Sorting logic (Duration, Calories, Rating)
+  // Sorting logic
   let sortedList = [...currentList].sort((a, b) => {
     if (sortBy === "duration") {
-      return Number(a.duration || 0) - Number(b.duration || 0);
+      return Number(a.duration) - Number(b.duration);
     }
     if (sortBy === "calories") {
-      return Number(a.caloriesBurned || 0) - Number(b.caloriesBurned || 0);
+      return Number(a.caloriesBurned) - Number(b.caloriesBurned);
     }
     if (sortBy === "rating") {
-      return Number(b.rating || 0) - Number(a.rating || 0);
+      return Number(b.rating) - Number(a.rating);
     }
     return 0;
   });
@@ -37,17 +32,17 @@ const MyPlanPage = () => {
   let totalCalories = 0;
 
   for (let i = 0; i < currentList.length; i++) {
-    totalMinutes = totalMinutes + Number(currentList[i].duration || 0);
-    totalCalories = totalCalories + Number(currentList[i].caloriesBurned || 0);
+    totalMinutes = totalMinutes + Number(currentList[i].duration);
+    totalCalories = totalCalories + Number(currentList[i].caloriesBurned);
   }
 
-  // Item delete function
+  // Delete function
   const handleDelete = (id) => {
     if (activeTab === "today") {
-      const updated = todayPlans.filter((item) => (item.id || item._id) !== id);
+      const updated = todayPlans.filter((item) => item.id !== id);
       setTodayPlans(updated);
     } else {
-      const updated = savedPlans.filter((item) => (item.id || item._id) !== id);
+      const updated = savedPlans.filter((item) => item.id !== id);
       setSavedPlans(updated);
     }
   };
@@ -138,24 +133,24 @@ const MyPlanPage = () => {
           {sortedList.length > 0 ? (
             sortedList.map((item) => (
               <div
-                key={item.id || item._id}
+                key={item.id}
                 className="flex flex-col md:flex-row items-center justify-between bg-[#14161d] border border-[#202228] rounded-2xl p-4 gap-4"
               >
-                {/* Left Side: Image & Content */}
+                {/* Left Side */}
                 <div className="flex items-center gap-4 w-full md:w-auto">
                   <Image
-                  width={840}
-                  height={640}
-                    src={item.image || item.img}
-                    alt={item.name || item.title}
+                    width={96}
+                    height={80}
+                    src={item.image}
+                    alt={item.name}
                     className="w-24 h-20 object-cover rounded-xl bg-[#0b0c0e]"
                   />
                   <div>
                     <h3 className="text-base font-black uppercase text-white">
-                      {item.name || item.title}
+                      {item.name}
                     </h3>
                     <p className="text-xs text-gray-400 mt-0.5">
-                      {item.equipment || "Bodyweight"}
+                      {item.equipment}
                     </p>
 
                     <div className="flex items-center gap-4 mt-2 text-xs text-gray-300">
@@ -166,26 +161,24 @@ const MyPlanPage = () => {
                   </div>
                 </div>
 
-                {/* Right Side: Action Buttons */}
+                {/* Right Side */}
                 <div className="flex items-center gap-3 w-full md:w-auto justify-end">
                   <Link
-                    href={`/fitness/${item.id || item._id}`}
+                    href={`/fitness/${item.id}`}
                     className="px-4 py-2.5 rounded-xl border border-[#202228] bg-[#0b0c0e] text-xs font-bold text-white hover:bg-[#1a1c24]"
                   >
                     View Details
                   </Link>
 
                   <button
-                    onClick={() =>
-                      alert(`Completed ${item.name || item.title}!`)
-                    }
+                    onClick={() => alert(`Completed ${item.name}!`)}
                     className="flex items-center gap-1 px-4 py-2.5 rounded-xl bg-[#C2F800] text-xs font-black text-black uppercase hover:bg-[#b0e200]"
                   >
                     ✓ Mark as Done
                   </button>
 
                   <button
-                    onClick={() => handleDelete(item.id || item._id)}
+                    onClick={() => handleDelete(item.id)}
                     className="text-gray-500 hover:text-red-500 px-2 py-1 text-base"
                   >
                     ✕
@@ -203,7 +196,7 @@ const MyPlanPage = () => {
               </p>
               <div>
                 <Link
-                  href="/fitness"
+                  href="/"
                   className="inline-block bg-[#C2F800] text-black font-black uppercase text-xs px-6 py-3 rounded-full"
                 >
                   Go to workouts
