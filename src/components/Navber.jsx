@@ -38,7 +38,7 @@ const Navber = () => {
                 <a className="hover:text-[#C2F800]">Workouts</a>
               </li>
               <li>
-                <a className="hover:text-[#C2F800]">My Plan</a>
+                <Link href={'/myplanPage'} className="hover:text-[#C2F800]">My Plan</Link>
               </li>
             </ul>
           </div>
@@ -56,25 +56,25 @@ const Navber = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 gap-2 text-sm font-semibold text-gray-300">
             <li>
-              <a className="hover:text-[#C2F800] transition-colors">Workouts</a>
+              <Link href={'/'} className="hover:text-[#C2F800] transition-colors">Workouts</Link>
             </li>
             <li>
-              <a className="hover:text-[#C2F800] transition-colors">My Plan</a>
+              <Link href={'/myplan'} className="hover:text-[#C2F800] transition-colors">My Plan</Link>
             </li>
           </ul>
         </div>
 
         {/* Action Button */}
         <div className="navbar-end">
-          <button className=" text-white text-black hover:bg-[#b0e200] border-none font-bold text-xs uppercase px-5 rounded-lg">
+          <Link href={'/myplan'} className=" text-white text-black hover:bg-[#b0e200] border-none font-bold text-xs uppercase px-5 rounded-lg">
             Plan{" "}
             <span className="border rounded-full text-black bg-[#C2F800] px-2">
               0
             </span>
-          </button>
-          <button className=" text-white hover:bg-[#b0e200] border-none font-bold text-xs uppercase px-5 rounded-lg">
+          </Link>
+          <Link href={'/myplan'} className=" text-white hover:bg-[#b0e200] border-none font-bold text-xs uppercase px-5 rounded-lg">
             Saved
-          </button>
+          </Link>
         </div>
       </div>
     </nav>
