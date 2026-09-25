@@ -6,7 +6,7 @@ const FooterPage = () => {
   return (
     <footer className="w-full bg-[#0b0c0e] border-t border-[#202126] py-6 px-4 md:px-12 mt-10">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-gray-400 text-xs">
-        {/* Left Side: Logo */}
+        {/* Left Logo */}
         <div className="flex items-center gap-2">
           <Image
           width={800}
@@ -23,7 +23,7 @@ const FooterPage = () => {
           </Link>
         </div>
 
-        {/* Right Side Text */}
+        {/* Right Text */}
         <div className="text-center md:text-right text-gray-400">
           © 2026 FitLog - Workout Library. Train hard, log honest.
         </div>
