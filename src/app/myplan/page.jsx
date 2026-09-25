@@ -27,7 +27,7 @@ const MyPlanPage = () => {
     return 0;
   });
 
-  // Calculate total minutes and calories
+  // Calculate total minute and calories
   let totalMinutes = 0;
   let totalCalories = 0;
 
@@ -60,7 +60,7 @@ const MyPlanPage = () => {
           </p>
         </div>
 
-        {/* Top Summary Box */}
+        {/* Top Summari Box */}
         <div className="grid grid-cols-3 bg-[#14161d] border border-[#202228] rounded-2xl p-6 divide-x divide-[#202228]">
           <div className="flex flex-col gap-1 pl-2 md:pl-4">
             <span className="text-xs font-semibold text-gray-400">
@@ -113,7 +113,7 @@ const MyPlanPage = () => {
             </button>
           </div>
 
-          {/* Sort By Dropdown */}
+          {/* Sort Dropdown */}
           <div className="flex items-center gap-2 text-xs text-gray-400">
             <span>Sort By</span>
             <select
@@ -128,7 +128,7 @@ const MyPlanPage = () => {
           </div>
         </div>
 
-        {/* List items Area */}
+        {/* List items  */}
         <div className="space-y-4">
           {sortedList.length > 0 ? (
             sortedList.map((item) => (
